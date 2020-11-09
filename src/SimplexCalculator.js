@@ -173,6 +173,28 @@ module.exports = () => {
 
     const getResult = table => table.find(line => line.Z === 1).B
 
+    const invalidVars = {
+        "Z": true,
+        "B": true
+    }
+
+    const findBasicVars = ({ table = [], allVars }) => allVars
+        .filter(oneVar =>
+            !invalidVars[oneVar] &&
+            table.every(line => line[oneVar] === 0 || line[oneVar] === 1)
+        )
+        .reduce((hash, basicVar) => {
+            hash[basicVar] = table.find(line => line[basicVar] === 1).B
+            return hash
+        }, {})
+
+    const findNonBasicVars = ({ allVars, basicVars }) => allVars
+        .filter(oneVar => !invalidVars[oneVar] && basicVars[oneVar] === undefined)
+        .reduce((hash, nonBasicVar) => {
+            hash[nonBasicVar] = 0
+            return hash
+        }, {})
+
     const calcSimplex = ({
         Z,
         restrictions
@@ -198,9 +220,23 @@ module.exports = () => {
             table = newTable
         }
 
-        const result = getResult(table)
+        const ZResult = getResult(table)
 
-        return result
+        const basicVars = findBasicVars({
+            allVars,
+            table
+        })
+
+        const nonBasicVars = findNonBasicVars({
+            allVars,
+            basicVars
+        })
+
+        return {
+            ZResult,
+            basicVars,
+            nonBasicVars
+        }
     }
 
     return {
