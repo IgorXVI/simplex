@@ -56,8 +56,6 @@ Passos:
 21 - substituir variáveis básicas na equação do Z
 */
 
-const readlineSync = require("readline-sync")
-
 const Helper = require("./Helper")
 const FunctionParser = require("./FunctionParser")
 const RestrictionParser = require("./RestrictionParser")
@@ -79,7 +77,25 @@ const zParser = ZParser({
 })
 
 const reader = Reader({
-    readlineSync,
+    readlineSync: {
+        question: str => {
+            const result = str === "Z = " ?
+                "x1 + 2x2 + 3x3"
+                : str === "Numero de restricoes: " ?
+                    "3"
+                    : str === "Restricao 1: " ?
+                        "x1 + 2x2 + x3 <= 40"
+                        : str === "Restricao 2: " ?
+                            "2x1 + 3x2 <= 30"
+                            : str === "Restricao 3: " ?
+                                "4x2 + 2x3 <= 20"
+                                : null
+
+            console.log(`${str}${result}`)
+
+            return result
+        }
+    },
     restrictionParser,
     zParser
 })
