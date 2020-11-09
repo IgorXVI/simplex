@@ -99,6 +99,9 @@ const simplexCalculator = SimplexCalculator()
 const Z = reader.readZ()
 const restrictions = reader.readRestrictions()
 
+console.log(Z)
+console.log(restrictions)
+
 console.log(simplexCalculator.calcSimplex({
     Z,
     restrictions

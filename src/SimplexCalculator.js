@@ -164,7 +164,7 @@ module.exports = () => {
 
     const testTableFail = ({
         table,
-        allVars = []
+        allVars
     }) => {
         const lineZ = table.find(line => line.Z === 1)
 
@@ -178,7 +178,7 @@ module.exports = () => {
         "B": true
     }
 
-    const findBasicVars = ({ table = [], allVars }) => allVars
+    const findBasicVars = ({ table, allVars }) => allVars
         .filter(oneVar =>
             !invalidVars[oneVar] &&
             table.every(line => line[oneVar] === 0 || line[oneVar] === 1)
