@@ -4,10 +4,15 @@ module.exports = ({
 }) => {
     const addEqualZero = input => `${input} = 0`
 
+    const addVarZ = input => ({
+        ...input,
+        Z: 1
+    })
+
     const invertSigns = (input = {}) => Object
         .keys(input)
         .reduce((obj, key) => {
-            const multNum = key === "equal" ? 1 : -1
+            const multNum = key === "B" ? 1 : -1
 
             obj[key] = input[key] * multNum
 
@@ -17,7 +22,8 @@ module.exports = ({
     const ZPipe = helper.createPipe(
         addEqualZero,
         functionParser.parseLinearFunction,
-        invertSigns
+        invertSigns,
+        addVarZ
     )
 
     const parseZ = zBodyString => ZPipe(zBodyString)

@@ -26,7 +26,7 @@ module.exports = () => {
 
         return {
             ...parseLinearFunctionBody(body),
-            equal: parseFloat(result)
+            B: parseFloat(result)
         }
     }
 
