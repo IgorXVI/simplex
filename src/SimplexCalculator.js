@@ -61,7 +61,7 @@ module.exports = () => {
         { index: -1, value: Infinity }
     )
 
-    const extractMainLine = ({
+    const extractMainLineValue = ({
         table,
         mainLineObj,
         minVar
@@ -70,11 +70,11 @@ module.exports = () => {
     const makeNewMainLine = ({
         allVars,
         table,
-        mainLine,
+        mainLineValue,
         mainLineObj
     }) => divideLine({
         allVars,
-        number: mainLine,
+        number: mainLineValue,
         line: table[mainLineObj.index]
     })
 
@@ -84,14 +84,14 @@ module.exports = () => {
         newMainLine,
         allVars
     }) => {
-        const pivoForThis = multiplyLine({
+        const mainValueForThis = multiplyLine({
             line: newMainLine,
             number: line[minVar] * (-1),
             allVars
         })
 
         const newLineValue = sumLines({
-            line1: pivoForThis,
+            line1: mainValueForThis,
             line2: line,
             allVars
         })
@@ -133,7 +133,7 @@ module.exports = () => {
             table
         })
 
-        const mainLine = extractMainLine({
+        const mainLineValue = extractMainLineValue({
             mainLineObj,
             minVar,
             table
@@ -141,7 +141,7 @@ module.exports = () => {
 
         const newMainLine = makeNewMainLine({
             allVars,
-            mainLine,
+            mainLineValue,
             mainLineObj,
             table
         })
