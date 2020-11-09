@@ -1,9 +1,3 @@
-const { question } = require("readline-sync")
-
-const name = question("Qual eh o seu nome? ")
-
-console.log(`Hello ${name}!`)
-
 /* 
 Regras:
 1 - deve ser de maximização
@@ -14,7 +8,7 @@ Regras:
 
 
 Passos:
-1 - Igualar função objetivo a 0, com o resultado sendo Z
+1 - Igualar função objetivo a 0, mantendo o Z positivo
 
 2 - transformar restrições em equações com variável de folga somadas no fim
 
@@ -28,7 +22,7 @@ Passos:
 
 5 - indentificar posição na tabela da variavel que entra: a que tem o menor valor negativo na linha Z
 
-6 - dividir os Bs pela variável que entra
+6 - dividir os Bs pelo número na mesma linha na coluna da variável que entra
 
 7 - o B dividido pela variável que entra que tiver o menor valor vai ser a variável que sai
 
@@ -41,7 +35,7 @@ Passos:
 
 11 - calcular novos valores para as outras linhas
 
-12 - multiplicar a linha pivo pela variavel da coluna que entra na nova linha que vai ser calculada
+12 - multiplicar a linha pivo pelo inverso da variavel da coluna que entra na nova linha que vai ser calculada
 
 13 - somar linha que vai ser calculada com a linha pivo que foi multiplicada no passo 12
 
@@ -61,3 +55,37 @@ Passos:
 
 21 - substituir variáveis básicas na equação do Z
 */
+
+const readlineSync = require("readline-sync")
+
+const Helper = require("./Helper")
+const FunctionParser = require("./FunctionParser")
+const RestrictionParser = require("./RestrictionParser")
+const ZParser = require("./ZParser")
+const Reader = require("./Reader")
+
+const helper = Helper()
+
+const functionParser = FunctionParser()
+
+const restrictionParser = RestrictionParser({
+    functionParser,
+    helper
+})
+
+const zParser = ZParser({
+    functionParser,
+    helper
+})
+
+const reader = Reader({
+    readlineSync,
+    restrictionParser,
+    zParser
+})
+
+const Z = reader.readZ()
+const restrictions = reader.readRestrictions()
+
+console.log(Z)
+console.log(restrictions)
