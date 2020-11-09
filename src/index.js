@@ -215,22 +215,10 @@ const makeNewTable = ({
     newMainLine
 }) => [...newLinesRetrictions, newMainLine]
 
-const calcSimplex = ({
-    Z,
-    restrictions
+const calcNextSimplexTable = ({
+    table,
+    allVars
 }) => {
-    const allFuns = extractAllFuns({
-        Z,
-        restrictions
-    })
-
-    const allVars = extractAllVars(allFuns)
-
-    const table = makeTable({
-        allFuns,
-        allVars
-    })
-
     const minVar = findMinVar({
         allVars,
         table
@@ -268,6 +256,47 @@ const calcSimplex = ({
     })
 
     return newTable
+}
+
+const testTableFail = ({
+    table,
+    allVars = []
+}) => {
+    const lineZ = table.find(line => line.Z === 1)
+
+    return allVars.some(oneVar => lineZ[oneVar] < 0)
+}
+
+const getResult = table => table.find(line => line.Z === 1).B
+
+const calcSimplex = ({
+    Z,
+    restrictions
+}) => {
+    const allFuns = extractAllFuns({
+        Z,
+        restrictions
+    })
+
+    const allVars = extractAllVars(allFuns)
+
+    let table = makeTable({
+        allFuns,
+        allVars
+    })
+
+    while (testTableFail({ table, allVars })) {
+        const newTable = calcNextSimplexTable({
+            allVars,
+            table
+        })
+
+        table = newTable
+    }
+
+    const result = getResult(table)
+
+    return result
 }
 
 const Z = reader.readZ()
