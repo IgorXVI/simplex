@@ -4,12 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "set NODE_ENV=test",
+    "test": "jest --runInBand --verbose false",
+    "posttest": "set NODE_ENV=development",
+    "precoverage": "set NODE_ENV=test",
+    "coverage": "jest --runInBand --coverage",
+    "postcoverage": "set NODE_ENV=development",
     "dev": "node ./src/index"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }
