@@ -1,5 +1,4 @@
 module.exports = ({
-    helper,
     functionParser
 }) => {
     const addEqualZero = input => `${input} = 0`
@@ -19,14 +18,17 @@ module.exports = ({
             return obj
         }, {})
 
-    const ZPipe = helper.createPipe(
-        addEqualZero,
-        functionParser.parseLinearFunction,
-        invertSigns,
-        addVarZ
-    )
+    const parseZ = zBodyString => {
+        const zBodyStringWithZero = addEqualZero(zBodyString)
 
-    const parseZ = zBodyString => ZPipe(zBodyString)
+        const fun = functionParser.parseLinearFunction(zBodyStringWithZero)
+
+        const funWithInvertedSigns = invertSigns(fun)
+
+        const funWithZ = addVarZ(funWithInvertedSigns)
+
+        return funWithZ
+    }
 
     return {
         parseZ

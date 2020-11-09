@@ -56,24 +56,19 @@ Passos:
 21 - substituir variáveis básicas na equação do Z
 */
 
-const Helper = require("./Helper")
 const FunctionParser = require("./FunctionParser")
 const RestrictionParser = require("./RestrictionParser")
 const ZParser = require("./ZParser")
 const Reader = require("./Reader")
 
-const helper = Helper()
-
 const functionParser = FunctionParser()
 
 const restrictionParser = RestrictionParser({
-    functionParser,
-    helper
+    functionParser
 })
 
 const zParser = ZParser({
-    functionParser,
-    helper
+    functionParser
 })
 
 const reader = Reader({
