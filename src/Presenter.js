@@ -19,7 +19,7 @@ module.exports = ({
         basicVars,
         nonBasicVars
     }) => {
-        log(`\n${makeZPresentation(ZResult)}\n${makeBasicVarsPresentation(basicVars)}\n${makeNonBasicVarsPresentation(nonBasicVars)}`)
+        log(`${makeZPresentation(ZResult)}\n${makeBasicVarsPresentation(basicVars)}\n${makeNonBasicVarsPresentation(nonBasicVars)}`)
     }
 
     return {
