@@ -3,7 +3,7 @@ Calculador de Simplex
 
 Como usar
 -------------
-###Setup
+### Setup
 Seguir os seguintes passos:
                 
 1. Instalar nodejs com versão >= 12.19.0
@@ -12,7 +12,7 @@ Seguir os seguintes passos:
 4. Rodar o comando "npm i"
 5. Rodar o comando "npm run dev"
 
-###Inputs
+### Inputs
 O programa vai pedir 3 inputs:
                 
 1. Z =
@@ -29,7 +29,7 @@ Exemplo:
 Restricao 1: x1 + x2 + x3 + x4 <= 600
 Restricao 2: 2x1 + x3 <= 280
 
-###Outpus
+### Outpus
 Depois que os inputs forem informados o programa vai 3 outpus, que são o resultado do cálculo do simplex:
                 
 1. Valor otimo para Z:
@@ -45,13 +45,13 @@ Variaveis nao basicas:
 x1 = 0
 xF1 = 0
 
-###Limitações
+### Limitações
 O programa só funciona se as variaveis informadas forem x**N**, com **N** sendo um número inteiro.
 Exemplos: x1, x2, x3
 
 Código
 -------------
-###Passos do simplex
+### Passos do simplex
 O código foi feito com base nos passos para a resolução do simplex:
 
 1. Igualar função objetivo a 0, mantendo o Z positivo
@@ -99,7 +99,7 @@ O código foi feito com base nos passos para a resolução do simplex:
 
 20. Converter váriaveis básicas no valor de B
 
-###FunctionParser.js
+### FunctionParser.js
 Essa classe transforma a string que o usuário informa no terminal em um objeto que o calculador de simplex pode usar.
 Exemplo:
 ```javascript
@@ -113,7 +113,7 @@ console.log(result)
 //{ Z: 1, x1: -5, x2: -3, x3: -4, x4: 1, B: 0 }
 ```
 
-###RestrictionParser.js
+### RestrictionParser.js
 Essa classe transforma o input que o usuário informa para uma restrição em um objeto que o calculador de simplex pode usar.
 Exemplo:
 ```javascript
@@ -132,7 +132,7 @@ console.log(result)
 //{ x1: 2, x2: 1, xF1: 1, B: 50 }
 ```
 
-###ZParser.js
+### ZParser.js
 Essa classe transforma o input que o usuário informa para o Z em um objeto que o calculador de simplex pode usar.
 Exemplo:
 ```javascript
@@ -151,7 +151,7 @@ console.log(result)
 //{ Z: 1, x1: -5, x2: -6, B: 0 }
 ```
 
-###Reader.js
+### Reader.js
 Essa classe lê os inputs do usuário pelo terminal.
 Exemplo:
 ```javascript
@@ -196,7 +196,7 @@ console.log(restrictions)
 */
 ```
 
-###SimplexCalculator.js
+### SimplexCalculator.js
 Essa classe calcula o resultado do simplex.
 Exemplo:
 ```javascript
@@ -223,7 +223,7 @@ console.log(result)
 */
 ```
 
-###Presenter.js
+### Presenter.js
 Essa classe mostra o resultado dos cálculos para o usuário.
 Exemplo:
 ```javascript
