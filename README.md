@@ -22,7 +22,8 @@ O programa vai pedir 3 inputs:
 O input 1 é a função objetivo.<br/>
 Exemplo: 5x1 + 3x2 + 4x3 -x4<br/>
 
-O input 2 é um número inteiro que representa a quantidade de restrições. Exemplo: 2<br/>
+O input 2 é um número inteiro que representa a quantidade de restrições.<br/>
+Exemplo: 2<br/>
 
 O input 3 é repeitdo **n** vezes, com **n** sendo o número de restrições informado no input 2.<br/>
 Exemplo:<br/>
@@ -46,7 +47,7 @@ x1 = 0<br/>
 xF1 = 0<br/>
 
 ### Limitações
-O programa só funciona se as variaveis informadas forem x**N**, com **N** sendo um número inteiro.
+O programa só funciona se as variaveis informadas forem x**N**, com **N** sendo um número inteiro.<br/>
 Exemplos: x1, x2, x3
 
 Código
