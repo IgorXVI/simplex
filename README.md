@@ -19,15 +19,15 @@ O programa vai pedir 3 inputs:
 2. Numero de restricoes:
 3. Restricao (número):
 
-O input 1 é a função objetivo.
-Exemplo: 5x1 + 3x2 + 4x3 -x4
+O input 1 é a função objetivo.<br/>
+Exemplo: 5x1 + 3x2 + 4x3 -x4<br/>
 
-O input 2 é um número inteiro que representa a quantidade de restrições. Exemplo: 2
+O input 2 é um número inteiro que representa a quantidade de restrições. Exemplo: 2<br/>
 
-O input 3 é repeitdo **n** vezes, com **n** sendo o número de restrições informado no input 2.
-Exemplo:
-Restricao 1: x1 + x2 + x3 + x4 <= 600
-Restricao 2: 2x1 + x3 <= 280
+O input 3 é repeitdo **n** vezes, com **n** sendo o número de restrições informado no input 2.<br/>
+Exemplo:<br/>
+Restricao 1: x1 + x2 + x3 + x4 <= 600<br/>
+Restricao 2: 2x1 + x3 <= 280<br/>
 
 ### Outpus
 Depois que os inputs forem informados o programa vai 3 outpus, que são o resultado do cálculo do simplex:
@@ -36,14 +36,14 @@ Depois que os inputs forem informados o programa vai 3 outpus, que são o result
 2. Variaveis basicas:
 3. Variaveis nao basicas:
 
-Exemplo:
-Valor otimo para Z: 300
-Variaveis basicas:
-x2 = 50
-xF2 = 40
-Variaveis nao basicas:
-x1 = 0
-xF1 = 0
+Exemplo:<br/>
+Valor otimo para Z: 300<br/>
+Variaveis basicas:<br/>
+x2 = 50<br/>
+xF2 = 40<br/>
+Variaveis nao basicas:<br/>
+x1 = 0<br/>
+xF1 = 0<br/>
 
 ### Limitações
 O programa só funciona se as variaveis informadas forem x**N**, com **N** sendo um número inteiro.
