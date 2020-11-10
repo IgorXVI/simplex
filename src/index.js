@@ -63,6 +63,7 @@ const RestrictionParser = require("./RestrictionParser")
 const ZParser = require("./ZParser")
 const Reader = require("./Reader")
 const SimplexCalculator = require("./SimplexCalculator")
+const Presenter = require("./Presenter")
 
 const functionParser = FunctionParser()
 
@@ -82,10 +83,16 @@ const reader = Reader({
 
 const simplexCalculator = SimplexCalculator()
 
+const presenter = Presenter({
+    log: console.log
+})
+
 const Z = reader.readZ()
 const restrictions = reader.readRestrictions()
 
-console.log(simplexCalculator.calcSimplex({
+const result = simplexCalculator.calcSimplex({
     Z,
     restrictions
-}))
+})
+
+presenter.present(result)
