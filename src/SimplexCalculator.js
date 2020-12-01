@@ -51,7 +51,7 @@ module.exports = () => {
                 return currObj
             }
 
-            const lineValue = line["B"] / line[minVar]
+            const lineValue = Math.abs(line["B"] / line[minVar])
 
             return lineValue < currObj.value ?
                 { index: lineIndex, value: lineValue }
@@ -195,31 +195,10 @@ module.exports = () => {
             return hash
         }, {})
 
-    const calcSimplex = ({
-        Z,
-        restrictions
+    const makeResult = ({
+        table,
+        allVars
     }) => {
-        const allFuns = extractAllFuns({
-            Z,
-            restrictions
-        })
-
-        const allVars = extractAllVars(allFuns)
-
-        let table = makeTable({
-            allFuns,
-            allVars
-        })
-
-        while (testTableFail({ table, allVars })) {
-            const newTable = calcNextSimplexTable({
-                allVars,
-                table
-            })
-
-            table = newTable
-        }
-
         const ZResult = getResult(table)
 
         const basicVars = findBasicVars({
@@ -232,11 +211,55 @@ module.exports = () => {
             basicVars
         })
 
-        return {
+        const result = {
             ZResult,
             basicVars,
             nonBasicVars
         }
+
+        return result
+    }
+
+    const calcSimplex = ({
+        Z,
+        restrictions
+    }) => {
+        const allFuns = extractAllFuns({
+            Z,
+            restrictions
+        })
+
+        let priority = {
+            Z: -Infinity,
+            B: Infinity
+        }
+
+        const getPriority = oneVar => priority[oneVar] || 1
+
+        const allVars = extractAllVars(allFuns)
+            .sort((a, b) => getPriority(a) - getPriority(b))
+
+        let table = makeTable({
+            allFuns,
+            allVars
+        })
+        let result
+
+        while (testTableFail({ table, allVars })) {
+            const newTable = calcNextSimplexTable({
+                allVars,
+                table
+            })
+
+            table = newTable
+
+            result = makeResult({
+                allVars,
+                table
+            })
+        }
+
+        return result
     }
 
     return {
